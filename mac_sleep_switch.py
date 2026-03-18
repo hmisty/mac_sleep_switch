@@ -39,13 +39,13 @@ class MacSleepToggler(rumps.App):
         """检查当前系统休眠模式，并更新图标"""
         try:
             result = subprocess.run(
-                "pmset -g | grep disablesleep",
+                "pmset -g | grep SleepDisabled",
                 shell=True,
                 capture_output=True,
                 text=True
             )
             # 如果输出中包含"1"，表示不休眠模式已开启
-            if "disablesleep" in result.stdout and "1" in result.stdout.split()[-1]:
+            if "SleepDisabled" in result.stdout and "1" in result.stdout.split()[-1]:
                 self.title = "🚫🌙"
         except:
             pass  # 忽略错误，保持默认
